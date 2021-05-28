@@ -1,6 +1,6 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class Fichas extends BaseSchema {
+export default class Ficha extends BaseSchema {
   protected tableName = 'ficha'
 
   public async up() {
@@ -49,10 +49,14 @@ export default class Fichas extends BaseSchema {
       table.string('choque_emocional', 1).notNullable()
       table.string('usa_antidepressivos', 1).notNullable()
       table.string('antidepressivos', 255)
-      table.foreign('sono_id').references('id').inTable('sono')
+      table.foreign('sono_id').references('id').inTable('sono').notNullable()
       table.string('usa_remedios_para_dormir', 1).notNullable()
-      table.foreign('estresse_id').references('id').inTable('estresse')
-      table.foreign('sensibilidade_a_dor_id').references('id').inTable('sensibilidade_a_dor')
+      table
+        .foreign('sensibilidade_a_dor_id')
+        .references('id')
+        .inTable('sensibilidade_a_dor')
+        .notNullable()
+      table.foreign('estresse_id').references('id').inTable('estresse').notNullable()
       table.string('checkups_medicos_regularmente', 1).notNullable()
       table.string('enfermidades_atuais', 255)
       table.string('enfermidades_anteriores', 255)
@@ -61,6 +65,7 @@ export default class Fichas extends BaseSchema {
         .foreign('frequencia_atividades_fisicas_id')
         .references('id')
         .inTable('frequencia_atividades_fisicas')
+        .notNullable()
       table.string('atividades_fisicas', 255)
       table.string('alimentacao', 255).notNullable()
       table.string('agua_quantidade', 45).notNullable()
@@ -70,7 +75,11 @@ export default class Fichas extends BaseSchema {
       table.integer('cigarros_dia')
       table.string('fumante_inicio', 45)
       table.string('fumante_fim', 45)
-      table.foreign('funcao_intestinal_id').references('id').inTable('funcao_intestinal')
+      table
+        .foreign('funcao_intestinal_id')
+        .references('id')
+        .inTable('funcao_intestinal')
+        .notNullable()
       table.string('funcao_intestinal_obs', 255)
       table.string('informacoes_complementares', 255)
       table.string('tratamentos_esteticos_anteriores', 255)
@@ -83,14 +92,18 @@ export default class Fichas extends BaseSchema {
       table.string('uso_de_cosmeticos_hidratacao', 255)
       table.string('uso_de_cosmeticos_tratamentos_especificos', 255)
       table.string('uso_de_cosmeticos_fotoprotecao', 255)
-      table.foreign('exposicao_solar_id').references('id').inTable('exposicao_solar')
+      table.foreign('exposicao_solar_id').references('id').inTable('exposicao_solar').notNullable()
       table.string('uso_de_cosmeticos_maquiagem', 255)
       table.string('cosmeticos_sensibilidade', 255)
-      table.foreign('fototipo_id').references('id').inTable('fototipo')
-      table.foreign('etnia_id').references('id').inTable('etnia')
-      table.foreign('tipo_pele_id').references('id').inTable('tipo_pele')
-      table.foreign('pele_ao_tato_id').references('id').inTable('pele_ao_tato')
-      table.foreign('pele_sensibilidade_id').references('id').inTable('pele_sensibilidade')
+      table.foreign('fototipo_id').references('id').inTable('fototipo').notNullable()
+      table.foreign('etnia_id').references('id').inTable('etnia').notNullable()
+      table.foreign('tipo_pele_id').references('id').inTable('tipo_pele').notNullable()
+      table.foreign('pele_ao_tato_id').references('id').inTable('pele_ao_tato').notNullable()
+      table
+        .foreign('pele_sensibilidade_id')
+        .references('id')
+        .inTable('pele_sensibilidade')
+        .notNullable()
       table.string('pele_sensibilidade_observacao', 255)
       table.string('acromias', 1).notNullable()
       table.string('hipocromias', 1).notNullable()
@@ -121,7 +134,11 @@ export default class Fichas extends BaseSchema {
       table.string('escoriacoes', 1).notNullable()
       table.string('comedoes_abertos', 1).notNullable()
       table.string('hematomas', 1).notNullable()
-      table.foreign('fotoenvelhecimento_id').references('id').inTable('fotoenvelhecimento')
+      table
+        .foreign('fotoenvelhecimento_id')
+        .references('id')
+        .inTable('fotoenvelhecimento')
+        .notNullable()
       table.string('verrugas_frontal', 255)
       table.string('verrugas_glabela', 255)
       table.string('verrugas_orbicular_olhos', 255)
@@ -143,7 +160,7 @@ export default class Fichas extends BaseSchema {
       table.string('outras_consideracoes', 255)
       table.date('data').notNullable()
       table.string('assinatura_cliente', 255).notNullable()
-      table.foreign('cliente_id').references('id').inTable('cliente')
+      table.foreign('cliente_id').references('id').inTable('cliente').notNullable()
     })
   }
 
