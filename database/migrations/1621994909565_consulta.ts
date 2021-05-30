@@ -1,6 +1,6 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class Consulta extends BaseSchema {
+export default class Consultas extends BaseSchema {
   protected tableName = 'consulta'
 
   public async up() {
@@ -10,7 +10,7 @@ export default class Consulta extends BaseSchema {
       table.string('tratamentos', 255)
       table.string('observacoes', 255)
       table.string('orientacoes', 255)
-      table.string('esteticista', 45)
+      table.string('esteticista', 45).notNullable()
       table.string('assinatura_cliente', 255)
       table.integer('ficha_id').references('id').inTable('ficha')
     })
