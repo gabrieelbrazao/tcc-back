@@ -45,7 +45,7 @@ export default class Ficha extends BaseSchema {
       table.string('tratamento_dermatologico_anterior_tempo', 45)
       table.string('ansiedade', 1).notNullable()
       table.string('impaciencia', 1).notNullable()
-      table.string('depressão', 1).notNullable()
+      table.string('depressao', 1).notNullable()
       table.string('choque_emocional', 1).notNullable()
       table.string('usa_antidepressivos', 1).notNullable()
       table.string('antidepressivos', 255)
