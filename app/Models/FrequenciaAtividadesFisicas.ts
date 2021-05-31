@@ -1,8 +1,7 @@
-import { BaseModel, column, hasMany } from '@ioc:Adonis/Lucid/Orm'
-import { HasMany } from '@ioc:Adonis/Lucid/Relations'
+import { BaseModel, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 import Ficha from './Ficha'
 
-export default class FrequenciaAtividadesFisica extends BaseModel {
+export default class FrequenciaAtividadesFisicas extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 

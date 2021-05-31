@@ -12,7 +12,7 @@ export default class Consultas extends BaseSchema {
       table.string('orientacoes', 255)
       table.string('esteticista', 45).notNullable()
       table.string('assinatura_cliente', 255)
-      table.integer('ficha_id').references('id').inTable('ficha')
+      table.integer('ficha_id').unsigned().index().references('id').inTable('ficha').notNullable()
     })
   }
 

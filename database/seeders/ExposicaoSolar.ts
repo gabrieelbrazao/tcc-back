@@ -3,7 +3,9 @@ import ExposicaoSolar from 'App/Models/ExposicaoSolar'
 
 export default class ExposicaoSolarSeeder extends BaseSeeder {
   public async run() {
-    ExposicaoSolar.createMany([
+    const uniqueKey = 'descricao'
+
+    await ExposicaoSolar.updateOrCreateMany(uniqueKey, [
       {
         descricao: 'Nunca',
       },

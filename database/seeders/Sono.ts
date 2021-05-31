@@ -3,7 +3,9 @@ import Sono from 'App/Models/Sono'
 
 export default class SonoSeeder extends BaseSeeder {
   public async run() {
-    Sono.createMany([
+    const uniqueKey = 'descricao'
+
+    await Sono.updateOrCreateMany(uniqueKey, [
       {
         descricao: 'Bom',
       },

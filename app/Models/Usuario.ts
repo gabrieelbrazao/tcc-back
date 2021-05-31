@@ -1,5 +1,4 @@
-import { BaseModel, column, hasMany } from '@ioc:Adonis/Lucid/Orm'
-import { HasMany } from '@ioc:Adonis/Lucid/Relations'
+import { BaseModel, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 import Cliente from './Cliente'
 
 export default class Usuario extends BaseModel {

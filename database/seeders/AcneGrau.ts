@@ -3,7 +3,9 @@ import AcneGrau from 'App/Models/AcneGrau'
 
 export default class AcneGrauSeeder extends BaseSeeder {
   public async run() {
-    AcneGrau.createMany([
+    const uniqueKey = 'descricao'
+
+    await AcneGrau.updateOrCreateMany(uniqueKey, [
       {
         descricao: 'Grau I',
       },

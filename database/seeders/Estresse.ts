@@ -3,7 +3,9 @@ import Estresse from 'App/Models/Estresse'
 
 export default class EstresseSeeder extends BaseSeeder {
   public async run() {
-    Estresse.createMany([
+    const uniqueKey = 'descricao'
+
+    await Estresse.updateOrCreateMany(uniqueKey, [
       {
         descricao: 'Normal',
       },

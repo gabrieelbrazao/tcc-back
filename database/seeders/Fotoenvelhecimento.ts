@@ -3,7 +3,9 @@ import Fotoenvelhecimento from 'App/Models/Fotoenvelhecimento'
 
 export default class FotoenvelhecimentoSeeder extends BaseSeeder {
   public async run() {
-    Fotoenvelhecimento.createMany([
+    const uniqueKey = 'descricao'
+
+    await Fotoenvelhecimento.updateOrCreateMany(uniqueKey, [
       {
         descricao: 'Tipo I - sem rugas (20 - 30 anos)',
       },

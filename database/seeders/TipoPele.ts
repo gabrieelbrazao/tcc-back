@@ -3,7 +3,9 @@ import TipoPele from 'App/Models/TipoPele'
 
 export default class TipoPeleSeeder extends BaseSeeder {
   public async run() {
-    TipoPele.createMany([
+    const uniqueKey = 'descricao'
+
+    await TipoPele.updateOrCreateMany(uniqueKey, [
       {
         descricao: 'Eudérmica',
       },

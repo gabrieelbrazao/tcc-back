@@ -3,7 +3,9 @@ import Etnia from 'App/Models/Etnia'
 
 export default class EtniaSeeder extends BaseSeeder {
   public async run() {
-    Etnia.createMany([
+    const uniqueKey = 'descricao'
+
+    await Etnia.updateOrCreateMany(uniqueKey, [
       {
         descricao: 'Branco',
       },

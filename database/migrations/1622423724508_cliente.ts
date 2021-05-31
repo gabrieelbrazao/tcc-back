@@ -10,7 +10,7 @@ export default class Cliente extends BaseSchema {
       table.string('fone_residencial', 10)
       table.string('fone_comercial', 11)
       table.string('celular', 11)
-      table.string('email', 255)
+      table.string('email', 255).unique()
       table.string('endereco', 255).notNullable()
       table.string('bairro', 255).notNullable()
       table.string('cidade', 255).notNullable()
@@ -19,7 +19,13 @@ export default class Cliente extends BaseSchema {
       table.string('profissao', 255).notNullable()
       table.string('estado_civil', 45).notNullable()
       table.date('data_nascimento').notNullable()
-      table.integer('usuario_id').references('id').inTable('usuario')
+      table
+        .integer('usuario_id')
+        .unsigned()
+        .index()
+        .references('id')
+        .inTable('usuario')
+        .notNullable()
     })
   }
 

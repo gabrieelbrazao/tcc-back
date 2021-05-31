@@ -3,7 +3,9 @@ import PeleAoTato from 'App/Models/PeleAoTato'
 
 export default class PeleAoTatoSeeder extends BaseSeeder {
   public async run() {
-    PeleAoTato.createMany([
+    const uniqueKey = 'descricao'
+
+    await PeleAoTato.updateOrCreateMany(uniqueKey, [
       {
         descricao: 'Muito fina',
       },

@@ -3,7 +3,9 @@ import Fototipo from 'App/Models/Fototipo'
 
 export default class FototipoSeeder extends BaseSeeder {
   public async run() {
-    Fototipo.createMany([
+    const uniqueKey = 'descricao'
+
+    await Fototipo.updateOrCreateMany(uniqueKey, [
       {
         descricao: 'I - caucasiano - pele muito clara, sempre queima, nunca bronzeia',
       },

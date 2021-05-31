@@ -3,7 +3,9 @@ import FuncaoIntestinal from 'App/Models/FuncaoIntestinal'
 
 export default class FuncaoIntestinalSeeder extends BaseSeeder {
   public async run() {
-    FuncaoIntestinal.createMany([
+    const uniqueKey = 'descricao'
+
+    await FuncaoIntestinal.updateOrCreateMany(uniqueKey, [
       {
         descricao: 'Regular',
       },
