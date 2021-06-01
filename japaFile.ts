@@ -10,7 +10,6 @@ sourceMapSupport.install({ handleUncaughtExceptions: false })
 
 async function startHttpServer() {
   const { Ignitor } = await import('@adonisjs/core/build/src/Ignitor')
-  process.env.HOST = String('0.0.0.0')
   process.env.PORT = String(await getPort())
   await new Ignitor(__dirname).httpServer().start()
 }
