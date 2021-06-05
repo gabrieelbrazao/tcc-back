@@ -10,6 +10,8 @@
 */
 
 import Server from '@ioc:Adonis/Core/Server'
+import { BaseModel } from '@ioc:Adonis/Lucid/Orm'
+import NoPluralStrategy from 'Contracts/namingStrategy'
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +41,5 @@ Server.middleware.register([() => import('@ioc:Adonis/Core/BodyParser')])
 |
 */
 Server.middleware.registerNamed({})
+
+BaseModel.namingStrategy = new NoPluralStrategy()

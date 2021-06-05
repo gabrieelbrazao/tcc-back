@@ -1,7 +1,7 @@
 import { BaseModel, NamingStrategyContract } from '@ioc:Adonis/Lucid/Orm'
 import { string } from '@ioc:Adonis/Core/Helpers'
 
-export default class NotPluralStrategy implements NamingStrategyContract {
+export default class NoPluralStrategy implements NamingStrategyContract {
   public tableName(model: typeof BaseModel) {
     return string.snakeCase(model.name)
   }
@@ -64,5 +64,3 @@ export default class NotPluralStrategy implements NamingStrategyContract {
     }
   }
 }
-
-BaseModel.namingStrategy = new NotPluralStrategy()

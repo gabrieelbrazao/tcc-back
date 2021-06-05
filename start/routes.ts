@@ -1,7 +1,9 @@
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', async () => {
-  return { hello: 'world' }
-})
+Route.get('/user', 'UsuarioController.show')
 
-Route.get('/send', 'UsuariosController.changePassword')
+Route.post('/user', 'UsuarioController.create')
+
+Route.put('/user/:id', 'UsuarioController.update')
+
+Route.patch('/user/changePassword/:id', 'UsuarioController.changePassword')
