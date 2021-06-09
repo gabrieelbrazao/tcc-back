@@ -1,23 +1,13 @@
 import test from 'japa'
 
 test.group('Consulta', () => {
+  // manda todos os dados, exceto o id e retorna nada
   test('Deverá adicionar uma consulta no banco de dados', (assert) => {
     assert
   })
 
-  test('Deverá adicionar a assinatura do cliente em uma consulta', (assert) => {
-    assert
-  })
-
-  test('Deverá alterar uma consulta', (assert) => {
-    assert
-  })
-
-  test('Deverá retornar uma consulta', (assert) => {
-    assert
-  })
-
-  test('Deverá desativar uma consulta', (assert) => {
+  // manda o id da ficha, retorna todas as consultas
+  test('Deverá retornar todas as consultas da ficha', (assert) => {
     assert
   })
 })

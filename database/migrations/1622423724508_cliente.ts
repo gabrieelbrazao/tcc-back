@@ -19,6 +19,7 @@ export default class Cliente extends BaseSchema {
       table.string('profissao', 255).notNullable()
       table.string('estado_civil', 45).notNullable()
       table.date('data_nascimento').notNullable()
+      table.string('ativo', 1).notNullable()
       table
         .integer('usuario_id')
         .unsigned()

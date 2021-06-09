@@ -5,19 +5,15 @@ test.group('Usuário', () => {
     assert
   })
 
-  test('Deverá retornar o e-mail e nome do usuário (perfil)', (assert) => {
+  test('Deverá alterar a senha, nome e e-mail do usuário', (assert) => {
     assert
   })
 
-  test('Deverá alterar a senha e o nome do usuário (perfil)', (assert) => {
+  test('Deverá mandar um e-mail com a nova senha do usuário', (assert) => {
     assert
   })
 
-  test('Deverá mandar um e-mail com a nova senha do usuário (alterar senha)', (assert) => {
-    assert
-  })
-
-  test('Deverá retornar o e-mail e nome do usuário, caso o e-mail e senha estiverem corretos (login)', (assert) => {
+  test('Deverá retornar os dados do usuário, caso o e-mail e senha estiverem corretos', (assert) => {
     assert
   })
 })

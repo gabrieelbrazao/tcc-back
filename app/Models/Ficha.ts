@@ -413,6 +413,9 @@ export default class Ficha extends BaseModel {
   @column()
   public assinaturaCliente: string
 
+  @column()
+  public imagemRosto: string
+
   @hasMany(() => Consulta)
   public consultas: HasMany<typeof Consulta>
 }

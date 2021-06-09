@@ -1,5 +1,5 @@
-import { BaseModel, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
-import Ficha from './Ficha'
+import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
+import Usuario from './Usuario'
 
 export default class Cliente extends BaseModel {
   @column({ isPrimary: true })
@@ -45,8 +45,11 @@ export default class Cliente extends BaseModel {
   public dataNascimento: Date
 
   @column()
-  public descricao: string
+  public ativo: string
 
-  @hasMany(() => Ficha)
-  public fichas: HasMany<typeof Ficha>
+  @column()
+  public usuarioId: string
+
+  @belongsTo(() => Usuario)
+  public usuario: BelongsTo<typeof Usuario>
 }

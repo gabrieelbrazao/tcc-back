@@ -6,8 +6,7 @@ import { generate } from 'generate-password'
 
 export default class UsuarioController {
   public async show({ request, response }: HttpContextContract) {
-    const email = request.qs().email
-    const password = request.qs().senha
+    const { email, senha: password } = request.qs()
 
     const user = await Usuario.findBy('email', email)
 
@@ -21,48 +20,45 @@ export default class UsuarioController {
       return
     }
 
-    response.status(200).json({ id: user.id, email: user.email, nome: user.nome })
+    response.status(200).json(user.serialize())
   }
 
   public async create({ request, response }: HttpContextContract) {
-    const name = request.body().nome
-    const email = request.body().email
-    const password = request.body().senha
+    const emailExists = await Usuario.findBy('email', request.body().email)
 
-    const user = new Usuario()
+    if (emailExists) {
+      response.status(409).json({ erro: 'Este e-mail já está em uso' })
+      return
+    }
 
-    user.nome = name
-    user.email = email
-    user.senha = password
-
-    await user.save()
+    const user = await Usuario.create(request.body())
 
     if (!user.$isPersisted) {
       response.status(500).json({ erro: 'Erro ao tentar criar usuário' })
       return
     }
 
-    response.status(201).json({ id: user.id })
+    response.status(204)
   }
 
   public async update({ request, response }: HttpContextContract) {
-    const name = request.body().nome
-    const email = request.body().email
-    const password = request.body().senha
-
-    const id = request.param('id')
-    const user = await Usuario.find(id)
+    const user = await Usuario.find(request.param('id'))
 
     if (!user) {
       response.status(404).json({ erro: 'Usuário não encontrado' })
       return
     }
 
-    user.nome = name
-    user.email = email
-    user.senha = password
+    if (request.body().email) {
+      const emailExists = await Usuario.findBy('email', request.body().email)
 
-    await user.save()
+      if (emailExists) {
+        response.status(409).json({ erro: 'Este e-mail já está em uso' })
+        return
+      }
+    }
+
+    await user.merge(request.body()).save()
 
     if (!user.$isPersisted) {
       response.status(500).json({ erro: 'Erro ao tentar alterar usuário' })
@@ -73,9 +69,7 @@ export default class UsuarioController {
   }
 
   public async changePassword({ request, response }: HttpContextContract) {
-    const id = request.param('id')
-
-    const user = await Usuario.find(id)
+    const user = await Usuario.find(request.param('id'))
 
     if (!user) {
       response.status(404).json({ erro: 'Usuário não encontrado' })
@@ -84,9 +78,7 @@ export default class UsuarioController {
 
     const newPassword = generate({ numbers: true })
 
-    user.senha = newPassword
-
-    await user.save()
+    await user.merge({ senha: newPassword }).save()
 
     if (!user.$isPersisted) {
       response.status(500).json({ erro: 'Erro ao tentar alterar senha do usuário' })

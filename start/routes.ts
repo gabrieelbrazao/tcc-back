@@ -1,9 +1,21 @@
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/user', 'UsuarioController.show')
+Route.group(() => {
+  Route.get('/', 'UsuarioController.show')
 
-Route.post('/user', 'UsuarioController.create')
+  Route.post('/', 'UsuarioController.create')
 
-Route.put('/user/:id', 'UsuarioController.update')
+  Route.put('/:id', 'UsuarioController.update')
 
-Route.patch('/user/changePassword/:id', 'UsuarioController.changePassword')
+  Route.patch('/changePassword/:id', 'UsuarioController.changePassword')
+}).prefix('/user')
+
+Route.group(() => {
+  Route.get('/:id', 'ClienteController.showById')
+
+  Route.get('/user/:id', 'ClienteController.showByUser')
+
+  Route.post('/user/:id', 'ClienteController.create')
+
+  Route.put('/:id', 'ClienteController.update')
+}).prefix('/client')

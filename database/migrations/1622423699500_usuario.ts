@@ -8,7 +8,7 @@ export default class Usuario extends BaseSchema {
       table.increments('id')
       table.string('nome', 255).notNullable()
       table.string('email', 255).unique().notNullable()
-      table.string('senha', 60).notNullable()
+      table.string('senha', 72).notNullable()
     })
   }
 

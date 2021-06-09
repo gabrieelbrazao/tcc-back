@@ -224,6 +224,7 @@ export default class Ficha extends BaseSchema {
       table.string('outras_consideracoes', 255)
       table.date('data').notNullable()
       table.string('assinatura_cliente', 255).notNullable()
+      table.string('imagem_rosto', 255).notNullable()
       table
         .integer('cliente_id')
         .unsigned()

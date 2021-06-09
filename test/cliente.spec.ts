@@ -13,6 +13,10 @@ test.group('Cliente', () => {
     assert
   })
 
+  test('Deverá retornar todos os clientes do usuário', (assert) => {
+    assert
+  })
+
   test('Deverá desativar um cliente', (assert) => {
     assert
   })
