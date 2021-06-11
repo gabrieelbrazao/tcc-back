@@ -48,7 +48,7 @@ export default class Cliente extends BaseModel {
   public ativo: string
 
   @column()
-  public usuarioId: string
+  public usuarioId: number
 
   @belongsTo(() => Usuario)
   public usuario: BelongsTo<typeof Usuario>

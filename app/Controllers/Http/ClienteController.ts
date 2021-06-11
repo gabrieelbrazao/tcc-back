@@ -7,11 +7,11 @@ export default class ClienteController {
     const client = await Cliente.find(request.param('id'))
 
     if (!client) {
-      response.status(404).json({ erro: 'Cliente não encontrado' })
+      response.notFound({ erro: 'Cliente não encontrado' })
       return
     }
 
-    response.status(200).json(client.serialize())
+    response.ok(client.serialize())
   }
 
   public async showByUser({ request, response }: HttpContextContract) {
@@ -25,14 +25,14 @@ export default class ClienteController {
       })
     )
 
-    response.status(200).json(result)
+    response.ok(result)
   }
 
   public async create({ request, response }: HttpContextContract) {
     const user = await Usuario.find(request.param('id'))
 
     if (!user) {
-      response.status(404).json({ erro: 'Usuário não encontrado' })
+      response.notFound({ erro: 'Usuário não encontrado' })
       return
     }
 
@@ -40,28 +40,26 @@ export default class ClienteController {
       const emailExists = await Cliente.findBy('email', request.body().email)
 
       if (emailExists) {
-        response.status(409).json({ erro: 'Este e-mail já está em uso' })
+        response.conflict({ erro: 'Este e-mail já está em uso' })
         return
       }
     }
 
-    request.body().dataNascimento = new Date(request.body().dataNascimento)
-
     const client = await user.related('clientes').create(request.body())
 
     if (!client.$isPersisted) {
-      response.status(500).json({ erro: 'Erro ao tentar criar cliente' })
+      response.internalServerError({ erro: 'Erro ao tentar criar cliente' })
       return
     }
 
-    response.status(204)
+    response.noContent()
   }
 
   public async update({ request, response }: HttpContextContract) {
     const client = await Cliente.find(request.param('id'))
 
     if (!client) {
-      response.status(404).json({ erro: 'Cliente não encontrado' })
+      response.notFound({ erro: 'Cliente não encontrado' })
       return
     }
 
@@ -69,21 +67,18 @@ export default class ClienteController {
       const emailExists = await Cliente.findBy('email', request.body().email)
 
       if (emailExists && emailExists.id !== client.id) {
-        response.status(409).json({ erro: 'Este e-mail já está em uso' })
+        response.conflict({ erro: 'Este e-mail já está em uso' })
         return
       }
     }
 
-    if (request.body().dataNascimento)
-      request.body().dataNascimento = new Date(request.body().dataNascimento)
-
     await client.merge(request.body()).save()
 
     if (!client.$isPersisted) {
-      response.status(500).json({ erro: 'Erro ao tentar alterar cliente' })
+      response.internalServerError({ erro: 'Erro ao tentar alterar cliente' })
       return
     }
 
-    response.status(204)
+    response.noContent()
   }
 }

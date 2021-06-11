@@ -20,9 +20,4 @@ test.group('Ficha', () => {
   test('Deverá retornar todas as fichas do usuario', (assert) => {
     assert
   })
-
-  // manda o id, retorna nada
-  test('Deverá desativar uma ficha', (assert) => {
-    assert
-  })
 })

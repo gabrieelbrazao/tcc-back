@@ -1,11 +1,13 @@
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, belongsTo, BelongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import { DateTime } from 'luxon'
+import Ficha from './Ficha'
 
 export default class Consulta extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
-  @column()
-  public data: Date
+  @column.dateTime({ autoCreate: true })
+  public data: DateTime
 
   @column()
   public tratamentos: string | null
@@ -20,5 +22,11 @@ export default class Consulta extends BaseModel {
   public esteticista: string
 
   @column()
-  public assinaturaCliente: string | null
+  public assinaturaCliente: string
+
+  @column()
+  public fichaId: number
+
+  @belongsTo(() => Ficha)
+  public ficha: BelongsTo<typeof Ficha>
 }

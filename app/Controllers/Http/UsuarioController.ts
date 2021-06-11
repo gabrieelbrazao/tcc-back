@@ -5,47 +5,47 @@ import Hash from '@ioc:Adonis/Core/Hash'
 import { generate } from 'generate-password'
 
 export default class UsuarioController {
-  public async show({ request, response }: HttpContextContract) {
+  public async login({ request, response }: HttpContextContract) {
     const { email, senha: password } = request.qs()
 
     const user = await Usuario.findBy('email', email)
 
     if (!user) {
-      response.status(404).json({ erro: 'Usuário não encontrado' })
+      response.notFound({ erro: 'Usuário não encontrado' })
       return
     }
 
     if (!(await Hash.verify(user.senha, password))) {
-      response.status(401).json({ erro: 'Credenciais inválidas' })
+      response.unauthorized({ erro: 'Credenciais inválidas' })
       return
     }
 
-    response.status(200).json(user.serialize())
+    response.ok(user.serialize())
   }
 
   public async create({ request, response }: HttpContextContract) {
     const emailExists = await Usuario.findBy('email', request.body().email)
 
     if (emailExists) {
-      response.status(409).json({ erro: 'Este e-mail já está em uso' })
+      response.conflict({ erro: 'Este e-mail já está em uso' })
       return
     }
 
     const user = await Usuario.create(request.body())
 
     if (!user.$isPersisted) {
-      response.status(500).json({ erro: 'Erro ao tentar criar usuário' })
+      response.internalServerError({ erro: 'Erro ao tentar criar usuário' })
       return
     }
 
-    response.status(204)
+    response.noContent()
   }
 
   public async update({ request, response }: HttpContextContract) {
     const user = await Usuario.find(request.param('id'))
 
     if (!user) {
-      response.status(404).json({ erro: 'Usuário não encontrado' })
+      response.notFound({ erro: 'Usuário não encontrado' })
       return
     }
 
@@ -53,7 +53,7 @@ export default class UsuarioController {
       const emailExists = await Usuario.findBy('email', request.body().email)
 
       if (emailExists) {
-        response.status(409).json({ erro: 'Este e-mail já está em uso' })
+        response.conflict({ erro: 'Este e-mail já está em uso' })
         return
       }
     }
@@ -61,18 +61,18 @@ export default class UsuarioController {
     await user.merge(request.body()).save()
 
     if (!user.$isPersisted) {
-      response.status(500).json({ erro: 'Erro ao tentar alterar usuário' })
+      response.internalServerError({ erro: 'Erro ao tentar alterar usuário' })
       return
     }
 
-    response.status(204)
+    response.noContent()
   }
 
   public async changePassword({ request, response }: HttpContextContract) {
     const user = await Usuario.find(request.param('id'))
 
     if (!user) {
-      response.status(404).json({ erro: 'Usuário não encontrado' })
+      response.notFound({ erro: 'Usuário não encontrado' })
       return
     }
 
@@ -81,7 +81,7 @@ export default class UsuarioController {
     await user.merge({ senha: newPassword }).save()
 
     if (!user.$isPersisted) {
-      response.status(500).json({ erro: 'Erro ao tentar alterar senha do usuário' })
+      response.internalServerError({ erro: 'Erro ao tentar alterar senha do usuário' })
       return
     }
 
@@ -96,6 +96,6 @@ export default class UsuarioController {
         })
     })
 
-    response.status(204)
+    response.noContent()
   }
 }

@@ -1,5 +1,20 @@
-import { BaseModel, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, belongsTo, BelongsTo, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
+import { DateTime } from 'luxon'
+import AcneGrau from './AcneGrau'
+import Cliente from './Cliente'
 import Consulta from './Consulta'
+import Estresse from './Estresse'
+import Etnia from './Etnia'
+import ExposicaoSolar from './ExposicaoSolar'
+import Fotoenvelhecimento from './Fotoenvelhecimento'
+import Fototipo from './Fototipo'
+import FrequenciaAtividadesFisicas from './FrequenciaAtividadesFisicas'
+import FuncaoIntestinal from './FuncaoIntestinal'
+import PeleAoTato from './PeleAoTato'
+import PeleSensibilidade from './PeleSensibilidade'
+import SensibilidadeADor from './SensibilidadeADor'
+import Sono from './Sono'
+import TipoPele from './TipoPele'
 
 export default class Ficha extends BaseModel {
   @column({ isPrimary: true })
@@ -135,7 +150,25 @@ export default class Ficha extends BaseModel {
   public antidepressivos: string
 
   @column()
+  public sonoId: number
+
+  @belongsTo(() => Sono)
+  public sono: BelongsTo<typeof Sono>
+
+  @column()
   public usaRemediosParaDormir: string
+
+  @column()
+  public sensibilidadeADorId: number
+
+  @belongsTo(() => SensibilidadeADor)
+  public sensibilidadeADor: BelongsTo<typeof SensibilidadeADor>
+
+  @column()
+  public estresseId: number
+
+  @belongsTo(() => Estresse)
+  public estresse: BelongsTo<typeof Estresse>
 
   @column()
   public checkupsMedicosRegularmente: string
@@ -195,6 +228,12 @@ export default class Ficha extends BaseModel {
   public medicamentosPlacasMetalicasFace: string
 
   @column()
+  public frequenciaAtividadesFisicasId: number
+
+  @belongsTo(() => FrequenciaAtividadesFisicas)
+  public frequenciaAtividadesFisicas: BelongsTo<typeof FrequenciaAtividadesFisicas>
+
+  @column()
   public atividadesFisicas: string | null
 
   @column()
@@ -220,6 +259,12 @@ export default class Ficha extends BaseModel {
 
   @column()
   public fumanteFim: string | null
+
+  @column()
+  public funcaoIntestinalId: number
+
+  @belongsTo(() => FuncaoIntestinal)
+  public funcaoIntestinal: BelongsTo<typeof FuncaoIntestinal>
 
   @column()
   public funcaoIntestinalObs: string | null
@@ -258,10 +303,46 @@ export default class Ficha extends BaseModel {
   public usoDeCosmeticosFotoprotecao: string | null
 
   @column()
+  public exposicaoSolarId: number
+
+  @belongsTo(() => ExposicaoSolar)
+  public exposicaoSolar: BelongsTo<typeof ExposicaoSolar>
+
+  @column()
   public usoDeCosmeticosMaquiagem: string | null
 
   @column()
   public cosmeticosSensibilidade: string | null
+
+  @column()
+  public fototipoId: number
+
+  @belongsTo(() => Fototipo)
+  public fototipo: BelongsTo<typeof Fototipo>
+
+  @column()
+  public etniaId: number
+
+  @belongsTo(() => Etnia)
+  public etnia: BelongsTo<typeof Etnia>
+
+  @column()
+  public tipoPeleId: number
+
+  @belongsTo(() => TipoPele)
+  public tipoPele: BelongsTo<typeof TipoPele>
+
+  @column()
+  public peleAoTatoId: number
+
+  @belongsTo(() => PeleAoTato)
+  public peleAoTato: BelongsTo<typeof PeleAoTato>
+
+  @column()
+  public peleSensibilidadeId: number
+
+  @belongsTo(() => PeleSensibilidade)
+  public peleSensibilidade: BelongsTo<typeof PeleSensibilidade>
 
   @column()
   public peleSensibilidadeObservacao: string | null
@@ -354,6 +435,12 @@ export default class Ficha extends BaseModel {
   public hematomas: string
 
   @column()
+  public fotoenvelhecimentoId: number
+
+  @belongsTo(() => Fotoenvelhecimento)
+  public fotoenvelhecimento: BelongsTo<typeof Fotoenvelhecimento>
+
+  @column()
   public verrugasFrontal: string | null
 
   @column()
@@ -390,6 +477,12 @@ export default class Ficha extends BaseModel {
   public papulas: string
 
   @column()
+  public acneGrauId: number
+
+  @belongsTo(() => AcneGrau)
+  public acneGrau: BelongsTo<typeof AcneGrau>
+
+  @column()
   public acneJuvenilVulgar: string
 
   @column()
@@ -407,14 +500,23 @@ export default class Ficha extends BaseModel {
   @column()
   public outrasConsideracoes: string | null
 
-  @column()
-  public data: Date
+  @column.dateTime({ autoCreate: true })
+  public data: DateTime
 
   @column()
   public assinaturaCliente: string
 
   @column()
   public imagemRosto: string
+
+  @column()
+  public ativo: string
+
+  @column()
+  public clienteId: number
+
+  @belongsTo(() => Cliente)
+  public cliente: BelongsTo<typeof Cliente>
 
   @hasMany(() => Consulta)
   public consultas: HasMany<typeof Consulta>

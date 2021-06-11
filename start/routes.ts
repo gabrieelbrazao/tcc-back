@@ -1,7 +1,7 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
-  Route.get('/', 'UsuarioController.show')
+  Route.get('/', 'UsuarioController.login')
 
   Route.post('/', 'UsuarioController.create')
 
@@ -19,3 +19,19 @@ Route.group(() => {
 
   Route.put('/:id', 'ClienteController.update')
 }).prefix('/client')
+
+Route.group(() => {
+  Route.get('/record/:id', 'ConsultaController.index')
+
+  Route.post('/record/:id', 'ConsultaController.create')
+}).prefix('/consultation')
+
+Route.group(() => {
+  Route.get('/user/:id', 'FichaController.index')
+
+  Route.get('/:id', 'FichaController.show')
+
+  Route.post('/', 'FichaController.create')
+
+  Route.put('/:id', 'FichaController.update')
+}).prefix('/record')
