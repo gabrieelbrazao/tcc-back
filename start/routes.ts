@@ -35,3 +35,7 @@ Route.group(() => {
 
   Route.put('/:id', 'FichaController.update')
 }).prefix('/record')
+
+Route.group(() => {
+  Route.get('/', 'AuxController.index')
+}).prefix('/aux')
