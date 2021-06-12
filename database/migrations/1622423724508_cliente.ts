@@ -10,7 +10,7 @@ export default class Cliente extends BaseSchema {
       table.string('fone_residencial', 10)
       table.string('fone_comercial', 11)
       table.string('celular', 11)
-      table.string('email', 255).unique()
+      table.string('email', 255)
       table.string('endereco', 255).notNullable()
       table.string('bairro', 255).notNullable()
       table.string('cidade', 255).notNullable()

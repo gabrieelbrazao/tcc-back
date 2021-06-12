@@ -1,41 +1,55 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
-  Route.get('/', 'UsuarioController.login')
+  Route.get('/login', 'UsuarioController.login')
 
   Route.post('/', 'UsuarioController.create')
-
-  Route.put('/:id', 'UsuarioController.update')
 
   Route.patch('/changePassword/:id', 'UsuarioController.changePassword')
 }).prefix('/user')
 
 Route.group(() => {
+  Route.get('/', 'UsuarioController.show')
+
+  Route.put('/', 'UsuarioController.update')
+})
+  .prefix('/user')
+  .middleware('auth')
+
+Route.group(() => {
   Route.get('/:id', 'ClienteController.showById')
 
-  Route.get('/user/:id', 'ClienteController.showByUser')
+  Route.get('/', 'ClienteController.showByUser')
 
-  Route.post('/user/:id', 'ClienteController.create')
+  Route.post('/', 'ClienteController.create')
 
   Route.put('/:id', 'ClienteController.update')
-}).prefix('/client')
+})
+  .prefix('/client')
+  .middleware('auth')
 
 Route.group(() => {
   Route.get('/record/:id', 'ConsultaController.index')
 
   Route.post('/record/:id', 'ConsultaController.create')
-}).prefix('/consultation')
+})
+  .prefix('/consultation')
+  .middleware('auth')
 
 Route.group(() => {
-  Route.get('/user/:id', 'FichaController.index')
+  Route.get('/', 'FichaController.index')
 
   Route.get('/:id', 'FichaController.show')
 
   Route.post('/', 'FichaController.create')
 
   Route.put('/:id', 'FichaController.update')
-}).prefix('/record')
+})
+  .prefix('/record')
+  .middleware('auth')
 
 Route.group(() => {
   Route.get('/', 'AuxController.index')
-}).prefix('/aux')
+})
+  .prefix('/aux')
+  .middleware('auth')

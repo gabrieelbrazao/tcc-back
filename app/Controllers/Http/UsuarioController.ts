@@ -2,10 +2,22 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Mail from '@ioc:Adonis/Addons/Mail'
 import Usuario from 'App/Models/Usuario'
 import Hash from '@ioc:Adonis/Core/Hash'
+import Env from '@ioc:Adonis/Core/Env'
 import { generate } from 'generate-password'
 
 export default class UsuarioController {
-  public async login({ request, response }: HttpContextContract) {
+  public async show({ response, auth }: HttpContextContract) {
+    const user = await Usuario.find(auth.use('api').user?.id)
+
+    if (!user) {
+      response.notFound({ erro: 'Usuário não encontrado' })
+      return
+    }
+
+    response.ok(user.serialize())
+  }
+
+  public async login({ request, response, auth }: HttpContextContract) {
     const { email, senha: password } = request.qs()
 
     const user = await Usuario.findBy('email', email)
@@ -20,7 +32,11 @@ export default class UsuarioController {
       return
     }
 
-    response.ok(user.serialize())
+    const token = await auth.use('api').generate(user, {
+      expiresIn: '7days',
+    })
+
+    response.ok(token)
   }
 
   public async create({ request, response }: HttpContextContract) {
@@ -41,8 +57,8 @@ export default class UsuarioController {
     response.noContent()
   }
 
-  public async update({ request, response }: HttpContextContract) {
-    const user = await Usuario.find(request.param('id'))
+  public async update({ request, response, auth }: HttpContextContract) {
+    const user = await Usuario.find(auth.use('api').user?.id)
 
     if (!user) {
       response.notFound({ erro: 'Usuário não encontrado' })
@@ -52,7 +68,7 @@ export default class UsuarioController {
     if (request.body().email) {
       const emailExists = await Usuario.findBy('email', request.body().email)
 
-      if (emailExists) {
+      if (emailExists && emailExists.id !== user.id) {
         response.conflict({ erro: 'Este e-mail já está em uso' })
         return
       }
@@ -87,7 +103,7 @@ export default class UsuarioController {
 
     await Mail.send((message) => {
       message
-        .from('FichasAnamnese@software.com')
+        .from(Env.get('SES_SENDER_EMAIL'))
         .to(user.email)
         .subject('Sua nova senha chegou!')
         .htmlView('emails/change_password', {

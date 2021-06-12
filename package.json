@@ -27,9 +27,11 @@
     "youch-terminal": "^1.1.1"
   },
   "dependencies": {
+    "@adonisjs/auth": "^8.0.5",
     "@adonisjs/core": "^5.1.0",
     "@adonisjs/lucid": "^14.1.0",
     "@adonisjs/mail": "^7.1.1",
+    "@adonisjs/redis": "^7.0.5",
     "@adonisjs/repl": "^3.0.0",
     "@adonisjs/view": "^6.0.2",
     "aws-sdk": "^2.924.0",

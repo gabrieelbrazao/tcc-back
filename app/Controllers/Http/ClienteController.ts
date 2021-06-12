@@ -14,8 +14,8 @@ export default class ClienteController {
     response.ok(client.serialize())
   }
 
-  public async showByUser({ request, response }: HttpContextContract) {
-    const clients = await Cliente.query().where('usuario_id', request.param('id'))
+  public async showByUser({ auth, response }: HttpContextContract) {
+    const clients = await Cliente.query().where('usuario_id', auth.use('api').user?.id || 0)
 
     const result = clients.map((client) =>
       client.serialize({
@@ -28,21 +28,12 @@ export default class ClienteController {
     response.ok(result)
   }
 
-  public async create({ request, response }: HttpContextContract) {
-    const user = await Usuario.find(request.param('id'))
+  public async create({ auth, request, response }: HttpContextContract) {
+    const user = await Usuario.find(auth.use('api').user?.id)
 
     if (!user) {
       response.notFound({ erro: 'Usuário não encontrado' })
       return
-    }
-
-    if (request.body().email) {
-      const emailExists = await Cliente.findBy('email', request.body().email)
-
-      if (emailExists) {
-        response.conflict({ erro: 'Este e-mail já está em uso' })
-        return
-      }
     }
 
     const client = await user.related('clientes').create(request.body())
@@ -61,15 +52,6 @@ export default class ClienteController {
     if (!client) {
       response.notFound({ erro: 'Cliente não encontrado' })
       return
-    }
-
-    if (request.body().email) {
-      const emailExists = await Cliente.findBy('email', request.body().email)
-
-      if (emailExists && emailExists.id !== client.id) {
-        response.conflict({ erro: 'Este e-mail já está em uso' })
-        return
-      }
     }
 
     await client.merge(request.body()).save()

@@ -4,8 +4,8 @@ import Usuario from 'App/Models/Usuario'
 import FileUpload from 'App/Utils/FileUpload'
 
 export default class FichasController {
-  public async index({ request, response }: HttpContextContract) {
-    const user = await Usuario.find(request.param('id'))
+  public async index({ auth, response }: HttpContextContract) {
+    const user = await Usuario.find(auth.use('api').user?.id)
 
     if (!user) {
       response.notFound({ erro: 'Usuário não encontrado' })
@@ -17,7 +17,7 @@ export default class FichasController {
         consultasQuery.orderByRaw('id DESC').limit(1)
       })
       .preload('cliente', (clientQuery) => {
-        clientQuery.where('usuario_id', request.param('id'))
+        clientQuery.where('usuario_id', 2)
       })
 
     const result = records.map((record) =>
@@ -39,8 +39,8 @@ export default class FichasController {
     response.ok(result)
   }
 
-  public async show({ request, response }: HttpContextContract) {
-    const record = await Ficha.find(request.param('id'))
+  public async show({ auth, response }: HttpContextContract) {
+    const record = await Ficha.find(auth.use('api').user?.id)
 
     if (!record) {
       response.notFound({ erro: 'Ficha não encontrada' })
