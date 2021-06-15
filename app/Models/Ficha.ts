@@ -24,7 +24,7 @@ export default class Ficha extends BaseModel {
   public queixaPrincipal: string
 
   @column()
-  public ginecologistaUltimaConsulta: string | null
+  public ginecologistaUltimaConsulta: Date | null
 
   @column()
   public cicloMenstrualNormal: string
