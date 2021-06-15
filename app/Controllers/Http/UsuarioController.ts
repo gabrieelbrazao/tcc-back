@@ -85,7 +85,7 @@ export default class UsuarioController {
   }
 
   public async changePassword({ request, response }: HttpContextContract) {
-    const user = await Usuario.find(request.param('id'))
+    const user = await Usuario.findBy('email', request.body().email)
 
     if (!user) {
       response.notFound({ erro: 'Usuário não encontrado' })

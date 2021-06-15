@@ -5,7 +5,7 @@ Route.group(() => {
 
   Route.post('/', 'UsuarioController.create')
 
-  Route.patch('/changePassword/:id', 'UsuarioController.changePassword')
+  Route.patch('/changePassword', 'UsuarioController.changePassword')
 }).prefix('/user')
 
 Route.group(() => {
