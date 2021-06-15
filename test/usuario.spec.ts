@@ -103,7 +103,7 @@ test.group('Usuário', () => {
       email: process.env.SES_SENDER_EMAIL,
     }).create()
 
-    await supertest(BASE_URL).patch(`/user/changePassword/${user.id}`).expect(204)
+    await supertest(BASE_URL).patch('/user/changePassword').send({ email: user.email }).expect(204)
   })
 
   test('Deverá retornar os dados do usuário', async () => {
