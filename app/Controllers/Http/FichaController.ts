@@ -16,7 +16,9 @@ export default class FichasController {
       .preload('consultas', (consultasQuery) => {
         consultasQuery.orderByRaw('id DESC').limit(1)
       })
-      .preload('cliente')
+      .preload('cliente', (consultasQuery) => {
+        consultasQuery.where('usuario_id', user.id)
+      })
 
     const result = records.map((record) =>
       record.serialize({
