@@ -16,9 +16,36 @@ test.group('Usuário', () => {
     return JSON.parse(text).token
   }
 
-  test('Deverá adicionar um usuário no banco de dados', async (assert) => {
-    const user = await UserFactory.create()
-    assert.isTrue(user.$isPersisted)
+  test('Deverá adicionar um usuário no banco de dados', async () => {
+    const user = await UserFactory.make()
+
+    await supertest(BASE_URL)
+      .post('/user')
+      .send({
+        nome: user.nome,
+        email: user.email,
+        senha: user.senha,
+      })
+      .expect(204)
+  })
+
+  test('Deverá rejeitar a criação de usuário pelo conflito de e-mail', async () => {
+    const user = await UserFactory.make()
+
+    await supertest(BASE_URL).post('/user').send({
+      nome: user.nome,
+      email: user.email,
+      senha: user.senha,
+    })
+
+    await supertest(BASE_URL)
+      .post('/user')
+      .send({
+        nome: user.nome,
+        email: user.email,
+        senha: user.senha,
+      })
+      .expect(409)
   })
 
   test('Deverá retornar um token de acesso', async () => {

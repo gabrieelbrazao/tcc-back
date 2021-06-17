@@ -13,7 +13,7 @@ export const ClientFactory = Factory.define(Cliente, ({ faker }) => {
     estado: faker.address.stateAbbr(),
     profissao: faker.name.jobTitle(),
     estadoCivil: faker.lorem.word(),
-    dataNascimento: faker.date.past(),
+    dataNascimento: faker.date.past().toISOString().split('T')[0],
     ativo: faker.random.arrayElement(['S', 'N']),
   }
 })

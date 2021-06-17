@@ -42,7 +42,7 @@ export default class Cliente extends BaseModel {
   public estadoCivil: string
 
   @column()
-  public dataNascimento: Date
+  public dataNascimento: string
 
   @column()
   public ativo: string
