@@ -156,6 +156,7 @@ export const RecordFactory = Factory.define(Ficha, ({ faker }) => {
     outrasConsideracoes: faker.lorem.sentence(10),
     assinaturaCliente: faker.image.imageUrl(),
     imagemRosto: faker.image.imageUrl(),
+    descricaoRosto: faker.lorem.sentence(3),
     ativo: faker.random.arrayElement(['S', 'N']),
   }
 })

@@ -510,6 +510,9 @@ export default class Ficha extends BaseModel {
   public imagemRosto: string
 
   @column()
+  public descricaoRosto: string
+
+  @column()
   public ativo: string
 
   @column()
