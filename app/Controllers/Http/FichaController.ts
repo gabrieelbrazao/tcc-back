@@ -39,8 +39,8 @@ export default class FichasController {
     response.ok(result)
   }
 
-  public async show({ auth, response }: HttpContextContract) {
-    const record = await Ficha.find(auth.use('api').user?.id)
+  public async show({ request, response }: HttpContextContract) {
+    const record = await Ficha.find(request.param('id'))
 
     if (!record) {
       response.notFound({ erro: 'Ficha não encontrada' })
