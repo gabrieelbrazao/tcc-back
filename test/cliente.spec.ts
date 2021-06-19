@@ -83,17 +83,7 @@ test.group('Cliente', () => {
 
     await supertest(BASE_URL)
       .put(`/client/${client.id}`)
-      .send({
-        nome: anotherClient.nome,
-        endereco: anotherClient.endereco,
-        bairro: anotherClient.bairro,
-        cidade: anotherClient.cidade,
-        estado: anotherClient.estado,
-        profissao: anotherClient.profissao,
-        estadoCivil: anotherClient.estadoCivil,
-        dataNascimento: anotherClient.dataNascimento,
-        ativo: anotherClient.ativo,
-      })
+      .send(anotherClient.$attributes)
       .auth(token, { type: 'bearer' })
       .expect(204)
   })

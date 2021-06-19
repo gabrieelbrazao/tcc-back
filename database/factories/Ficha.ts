@@ -8,55 +8,34 @@ export const RecordFactory = Factory.define(Ficha, ({ faker }) => {
 
   return {
     queixaPrincipal: faker.lorem.sentence(10),
-    ginecologistaUltimaConsulta: faker.date.past(),
     cicloMenstrualNormal: faker.random.arrayElement(['S', 'N']),
-    alteracoesCicloMenstrual: faker.lorem.sentence(10),
-    primeiraMenstruacao: faker.date.past(),
-    ultimaMenstruacao: faker.date.past(),
     sop: faker.random.arrayElement(['S', 'N']),
     climaterio: faker.random.arrayElement(['S', 'N']),
     menopausa: faker.random.arrayElement(['S', 'N']),
     reposicaoHormonal: faker.random.arrayElement(['S', 'N']),
     gestante: faker.random.arrayElement(['S', 'N']),
-    mesesGestacao: faker.datatype.number(9),
     quantidadeGravidez: faker.datatype.number(10),
     quantidadeFilhos: faker.datatype.number(10),
-    idadesFilhos: faker.lorem.sentence(3),
     seiosNormais: faker.random.arrayElement(['S', 'N']),
-    seiosAlteracoes: faker.lorem.sentence(10),
     contraceptivosHormonais: faker.random.arrayElement(['S', 'N']),
-    contraceptivosHormonaisTempo: faker.lorem.sentence(3),
     hirsutismo: faker.random.arrayElement(['S', 'N']),
-    hirsutismoRepentino: faker.random.arrayElement(['S', 'N']),
-    hirsutismoIdade: faker.lorem.sentence(3),
     diabetes: faker.random.arrayElement(['S', 'N']),
     tireoide: faker.random.arrayElement(['S', 'N']),
     marcaPasso: faker.random.arrayElement(['S', 'N']),
-    cardiacoObservacoes: faker.lorem.sentence(10),
     hipotensao: faker.random.arrayElement(['S', 'N']),
     hipertensao: faker.random.arrayElement(['S', 'N']),
-    alergias: faker.lorem.sentence(10),
     tratamentoDermatologico: faker.random.arrayElement(['S', 'N']),
-    tratamentoDermatologicoJustificativa: faker.lorem.sentence(10),
-    tratamentoDermatologicoEmUso: faker.lorem.sentence(10),
-    tratamentoDermatologicoEmUsoTempo: faker.lorem.sentence(3),
     tratamentoDermatologicoAnterior: faker.random.arrayElement(['S', 'N']),
-    tratamentoDermatologicoAnteriorJustificativa: faker.lorem.sentence(10),
-    tratamentoDermatologicoAnteriorUsado: faker.lorem.sentence(3),
-    tratamentoDermatologicoAnteriorTempo: faker.lorem.sentence(3),
     ansiedade: faker.random.arrayElement(['S', 'N']),
     impaciencia: faker.random.arrayElement(['S', 'N']),
     depressao: faker.random.arrayElement(['S', 'N']),
     choqueEmocional: faker.random.arrayElement(['S', 'N']),
     usaAntidepressivos: faker.random.arrayElement(['S', 'N']),
-    antidepressivos: faker.lorem.sentence(10),
     sonoId: faker.datatype.number({ min: 1, max: 4 }),
     usaRemediosParaDormir: faker.random.arrayElement(['S', 'N']),
     sensibilidadeADorId: faker.datatype.number({ min: 1, max: 4 }),
     estresseId: faker.datatype.number({ min: 1, max: 4 }),
     checkupsMedicosRegularmente: faker.random.arrayElement(['S', 'N']),
-    enfermidadesAtuais: faker.lorem.sentence(10),
-    enfermidadesAnteriores: faker.lorem.sentence(10),
     medicamentosDores: faker.random.arrayElement(['S', 'N']),
     medicamentosEpilepsia: faker.random.arrayElement(['S', 'N']),
     medicamentosAntecedentesOncologicos: faker.random.arrayElement(['S', 'N']),
@@ -74,37 +53,18 @@ export const RecordFactory = Factory.define(Ficha, ({ faker }) => {
     medicamentosDermatiteSeborreica: faker.random.arrayElement(['S', 'N']),
     medicamentosPlacasMetalicasFace: faker.random.arrayElement(['S', 'N']),
     frequenciaAtividadesFisicasId: faker.datatype.number({ min: 1, max: 4 }),
-    atividadesFisicas: faker.lorem.sentence(10),
     alimentacao: faker.lorem.sentence(10),
     aguaQuantidade: faker.lorem.sentence(3),
     aguaCopos: faker.datatype.number(20),
     etilismo: faker.lorem.sentence(10),
     fumante: faker.random.arrayElement(['S', 'N']),
-    cigarrosDia: faker.datatype.number(30),
-    fumanteInicio: faker.lorem.sentence(3),
-    fumanteFim: faker.lorem.sentence(3),
     funcaoIntestinalId: faker.datatype.number({ min: 1, max: 2 }),
-    funcaoIntestinalObs: faker.lorem.sentence(10),
-    informacoesComplementares: faker.lorem.sentence(10),
-    tratamentosEsteticosAnteriores: faker.lorem.sentence(10),
-    cirurgiaPlasticaFace: faker.lorem.sentence(10),
-    cirurgiaPlasticaFaceTempo: faker.lorem.sentence(3),
-    usoDeCosmeticosLimpeza: faker.lorem.sentence(10),
-    usoDeCosmeticosEsfoliacao: faker.lorem.sentence(10),
-    usoDeCosmeticosTonificacao: faker.lorem.sentence(10),
-    usoDeCosmeticosAcidos: faker.lorem.sentence(10),
-    usoDeCosmeticosHidratacao: faker.lorem.sentence(10),
-    usoDeCosmeticosTratamentosEspecificos: faker.lorem.sentence(10),
-    usoDeCosmeticosFotoprotecao: faker.lorem.sentence(10),
     exposicaoSolarId: faker.datatype.number({ min: 1, max: 4 }),
-    usoDeCosmeticosMaquiagem: faker.lorem.sentence(10),
-    cosmeticosSensibilidade: faker.lorem.sentence(10),
     fototipoId: faker.datatype.number({ min: 1, max: 6 }),
     etniaId: faker.datatype.number({ min: 1, max: 5 }),
     tipoPeleId: faker.datatype.number({ min: 1, max: 9 }),
     peleAoTatoId: faker.datatype.number({ min: 1, max: 5 }),
     peleSensibilidadeId: faker.datatype.number({ min: 1, max: 4 }),
-    peleSensibilidadeObservacao: faker.lorem.sentence(10),
     acromias: faker.random.arrayElement(['S', 'N']),
     hipocromias: faker.random.arrayElement(['S', 'N']),
     efelides: faker.random.arrayElement(['S', 'N']),
@@ -135,31 +95,73 @@ export const RecordFactory = Factory.define(Ficha, ({ faker }) => {
     comedoesAbertos: faker.random.arrayElement(['S', 'N']),
     hematomas: faker.random.arrayElement(['S', 'N']),
     fotoenvelhecimentoId: faker.datatype.number({ min: 1, max: 4 }),
-    verrugasFrontal: faker.lorem.sentence(10),
-    verrugasGlabela: faker.lorem.sentence(10),
-    verrugasOrbicularOlhos: faker.lorem.sentence(10),
-    verrugasOrbicularLabios: faker.lorem.sentence(10),
-    verrugasLateralFace: faker.lorem.sentence(10),
-    verrugasSulcoNasogeniano: faker.lorem.sentence(10),
-    verrugasPescoco: faker.lorem.sentence(10),
-    verrugasColo: faker.lorem.sentence(10),
     pustulas: faker.random.arrayElement(['S', 'N']),
     nodulos: faker.random.arrayElement(['S', 'N']),
     comedoesFechados: faker.random.arrayElement(['S', 'N']),
     papulas: faker.random.arrayElement(['S', 'N']),
-    acneGrauId: faker.datatype.number({ min: 1, max: 4 }),
     acneJuvenilVulgar: faker.random.arrayElement(['S', 'N']),
     acneTardia: faker.random.arrayElement(['S', 'N']),
     acneFamilia: faker.random.arrayElement(['S', 'N']),
-    acneInicio: faker.lorem.sentence(3),
-    acneEvolucao: faker.lorem.sentence(3),
-    outrasConsideracoes: faker.lorem.sentence(10),
     assinaturaCliente: faker.image.imageUrl(),
     imagemRosto: faker.image.imageUrl(),
     descricaoRosto: faker.lorem.sentence(3),
     ativo: faker.random.arrayElement(['S', 'N']),
   }
 })
+  .state('optionals', (record, { faker }) => {
+    record.ginecologistaUltimaConsulta = faker.date.past().toISOString().split('T')[0]
+    record.alteracoesCicloMenstrual = faker.lorem.sentence(10)
+    record.primeiraMenstruacao = faker.date.past().toISOString().split('T')[0]
+    record.ultimaMenstruacao = faker.date.past().toISOString().split('T')[0]
+    record.mesesGestacao = faker.datatype.number(9)
+    record.idadesFilhos = faker.lorem.sentence(3)
+    record.seiosAlteracoes = faker.lorem.sentence(10)
+    record.contraceptivosHormonaisTempo = faker.lorem.sentence(3)
+    record.hirsutismoRepentino = faker.random.arrayElement(['S', 'N'])
+    record.hirsutismoIdade = faker.lorem.sentence(3)
+    record.cardiacoObservacoes = faker.lorem.sentence(10)
+    record.alergias = faker.lorem.sentence(10)
+    record.tratamentoDermatologicoJustificativa = faker.lorem.sentence(10)
+    record.tratamentoDermatologicoEmUso = faker.lorem.sentence(10)
+    record.tratamentoDermatologicoEmUsoTempo = faker.lorem.sentence(3)
+    record.tratamentoDermatologicoAnteriorJustificativa = faker.lorem.sentence(10)
+    record.tratamentoDermatologicoAnteriorUsado = faker.lorem.sentence(3)
+    record.tratamentoDermatologicoAnteriorTempo = faker.lorem.sentence(3)
+    record.antidepressivos = faker.lorem.sentence(10)
+    record.enfermidadesAtuais = faker.lorem.sentence(10)
+    record.enfermidadesAnteriores = faker.lorem.sentence(10)
+    record.atividadesFisicas = faker.lorem.sentence(10)
+    record.cigarrosDia = faker.datatype.number(30)
+    record.fumanteInicio = faker.lorem.sentence(3)
+    record.fumanteFim = faker.lorem.sentence(3)
+    record.funcaoIntestinalObs = faker.lorem.sentence(10)
+    record.informacoesComplementares = faker.lorem.sentence(10)
+    record.tratamentosEsteticosAnteriores = faker.lorem.sentence(10)
+    record.cirurgiaPlasticaFace = faker.lorem.sentence(10)
+    record.cirurgiaPlasticaFaceTempo = faker.lorem.sentence(3)
+    record.usoDeCosmeticosLimpeza = faker.lorem.sentence(10)
+    record.usoDeCosmeticosEsfoliacao = faker.lorem.sentence(10)
+    record.usoDeCosmeticosTonificacao = faker.lorem.sentence(10)
+    record.usoDeCosmeticosAcidos = faker.lorem.sentence(10)
+    record.usoDeCosmeticosHidratacao = faker.lorem.sentence(10)
+    record.usoDeCosmeticosTratamentosEspecificos = faker.lorem.sentence(10)
+    record.usoDeCosmeticosFotoprotecao = faker.lorem.sentence(10)
+    record.usoDeCosmeticosMaquiagem = faker.lorem.sentence(10)
+    record.cosmeticosSensibilidade = faker.lorem.sentence(10)
+    record.peleSensibilidadeObservacao = faker.lorem.sentence(10)
+    record.verrugasFrontal = faker.lorem.sentence(10)
+    record.verrugasGlabela = faker.lorem.sentence(10)
+    record.verrugasOrbicularOlhos = faker.lorem.sentence(10)
+    record.verrugasOrbicularLabios = faker.lorem.sentence(10)
+    record.verrugasLateralFace = faker.lorem.sentence(10)
+    record.verrugasSulcoNasogeniano = faker.lorem.sentence(10)
+    record.verrugasPescoco = faker.lorem.sentence(10)
+    record.verrugasColo = faker.lorem.sentence(10)
+    record.acneGrauId = faker.datatype.number({ min: 1, max: 4 })
+    record.acneInicio = faker.lorem.sentence(3)
+    record.acneEvolucao = faker.lorem.sentence(3)
+    record.outrasConsideracoes = faker.lorem.sentence(10)
+  })
   .relation('cliente', () => ClientFactory)
   .relation('consultas', () => ConsultationFactory)
   .build()

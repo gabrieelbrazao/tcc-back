@@ -24,7 +24,7 @@ export default class Ficha extends BaseModel {
   public queixaPrincipal: string
 
   @column()
-  public ginecologistaUltimaConsulta: Date | null
+  public ginecologistaUltimaConsulta: string | null
 
   @column()
   public cicloMenstrualNormal: string
@@ -33,10 +33,10 @@ export default class Ficha extends BaseModel {
   public alteracoesCicloMenstrual: string | null
 
   @column()
-  public primeiraMenstruacao: Date | null
+  public primeiraMenstruacao: string | null
 
   @column()
-  public ultimaMenstruacao: Date | null
+  public ultimaMenstruacao: string | null
 
   @column()
   public sop: string
@@ -147,7 +147,7 @@ export default class Ficha extends BaseModel {
   public usaAntidepressivos: string
 
   @column()
-  public antidepressivos: string
+  public antidepressivos: string | null
 
   @column()
   public sonoId: number
@@ -477,7 +477,7 @@ export default class Ficha extends BaseModel {
   public papulas: string
 
   @column()
-  public acneGrauId: number
+  public acneGrauId: number | null
 
   @belongsTo(() => AcneGrau)
   public acneGrau: BelongsTo<typeof AcneGrau>

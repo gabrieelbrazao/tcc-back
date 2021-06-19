@@ -32,14 +32,12 @@ test.group('Consulta', () => {
 
     const token = await getToken()
 
-    if (!tratamentos || !observacoes || !orientacoes) return
-
     await supertest(BASE_URL)
       .post(`/consultation/record/${record.id}`)
       .field('esteticista', esteticista)
-      .field('tratamentos', tratamentos)
-      .field('observacoes', observacoes)
-      .field('orientacoes', orientacoes)
+      .field('tratamentos', tratamentos!)
+      .field('observacoes', observacoes!)
+      .field('orientacoes', orientacoes!)
       .attach('assinaturaCliente', './test/testFile.txt')
       .auth(token, { type: 'bearer' })
       .expect(204)

@@ -12,13 +12,15 @@ export default class FichasController {
       return
     }
 
-    const records = await Ficha.query()
+    let records = await Ficha.query()
       .preload('consultas', (consultasQuery) => {
         consultasQuery.orderByRaw('id DESC').limit(1)
       })
       .preload('cliente', (consultasQuery) => {
         consultasQuery.where('usuario_id', user.id)
       })
+
+    records = records.filter((record) => record.cliente)
 
     const result = records.map((record) =>
       record.serialize({
